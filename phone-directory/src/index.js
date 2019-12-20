@@ -1,7 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import AddSusbscriber from './AddSubscriber';
 import './common/common.css';
-ReactDOM.render(<AddSusbscriber />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(<App />, document.getElementById('root'));
+serviceWorker.unregister(); 
