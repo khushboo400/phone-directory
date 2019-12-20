@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import './AddSubscriber.css';
+import { Link } from 'react-router-dom';
 
 class AddSusbscriber extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -12,25 +12,29 @@ class AddSusbscriber extends Component {
             phone: ''
         }
     }
-
     inputChangedHandler = (e) => {
         const state = this.state;
         state[e.target.name] = e.target.value;
         this.setState(state);
+        this.props.history.push("/");
     }
     onFormSubmitted = (e) => {
         e.preventDefault();
         this.props.addSubscriberHandler(this.state);
         this.setState({ id: 0, name: '', phone: ' ' });
     }
-    render() {
+
+render() {
+
     const { name, phone } = this.state;
-    return (
-        <div>
-            <Header heading="Add Subscriber" />
-            <div className="component-body-container">
-                <button className="custom-btn">Back</button>
-                <form className="subscriber-form" onSubmit={this.onFormSubmitted.bind(this)}>
+      return (
+            <div>
+                <Header heading="Add Subscriber" />
+                <div className="component-body-container">
+                <Link to="/">
+                        <button className="custom-btn">Back</button>
+                    </Link>
+                    <form className="subscriber-form" onSubmit={this.onFormSubmitted.bind(this)}>
                         <label htmlFor="name" className="label-control">Name: </label><br />
                         <input id="name" type="text" className="input-control" name="name" onChange={this.inputChangedHandler} /><br /><br />
                         <label htmlFor="phone" className="label-control">Phone: </label><br />
@@ -43,8 +47,7 @@ class AddSusbscriber extends Component {
                         </div>
 
                         <button type="submit" className="custom-btn add-btn">Add</button>
-                               </form>
-                </div>
+                    </form>
             </div>
         )
     }
